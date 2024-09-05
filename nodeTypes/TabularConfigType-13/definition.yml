@@ -1,0 +1,63 @@
+fileVersion: 1
+id: "13"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: New Type
+    short: NEW
+    tagColor: gray
+    plural: New Types
+
+    config:
+    - groupName: 'My Config Group'
+      items:
+      - type: materializationSelector
+        default: table
+        options:
+        - table
+        - view
+        isRequired: true
+      - type: tabular
+        displayName: My Tabular Config # Name of the tabular config (string)
+        attributeName: myTabularConfig # Reference name for this item (string)
+        isRequired: false
+        enableIf: 'true'  # If true, display this config group, else hide this config group. 
+                          # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                          # (boolean string, 'true' | 'false', defaults 'true')
+        columns:
+        - type: dropdownSelector
+          displayName: My Dropdown Selector # Name of the dropdown selector (string)
+          attributeName: myDropdown # Reference name for this item (string)
+          options: # Options for the dropdown (strings)
+            - option1
+            - option2
+          isRequired: false
+          enableIf: 'true'  # If true, display this config group, else hide this config group. 
+                          # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                          # (boolean string, 'true' | 'false', defaults 'true')
+        - type: toggleButton
+          displayName: My Toggle Button 2
+          attributeName: myToggleButton2 # Reference name for this item (string)
+          isRequired: false
+          default: true
+          enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"  # If true, display this config group, else hide this config group. 
+                          # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                          # (boolean string, 'true' | 'false', defaults 'true')
+        - type: columnDropdownSelector 
+          displayName: Column Name # Name of the dropdown selector (string)
+          attributeName: myColumnDropdown # Reference name for this item (string)
+          isRequired: true # If this config item is required (boolean)
+          enableIf: 'true' # If true, display this config group, else hide this config group. 
+                          # Jinja expression resulting in a quoted boolean may be used for dynamic behavior 
+                          # (boolean string, 'true' | 'false', defaults 'true')
+    - groupName: new group
+      description: guess where i am
+      items:
+      - displayName: Ack
+        type: toggleButton
+        default: true
+        
+name: Tabular Config Type
+type: NodeType
