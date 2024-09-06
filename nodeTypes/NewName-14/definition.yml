@@ -26,5 +26,5 @@ metadata:
        {% if not loop.first %} ON "{{ sources[0].dependencies[loop.index0].node.name }}"./*COLUMN*/ = "{{ sources[0].dependencies[loop.index0 - 1].node.name }}"./*COLUMN*/ {%- endif %}
      {% endfor -%}
      WHERE 1=1
-name: Copy of Stage
+name: New Name
 type: NodeType
